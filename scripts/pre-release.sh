@@ -1,9 +1,8 @@
 #! /bin/bash
 
 
-if ([ $TRAVIS_BRANCH == $DEV_BRANCH ] && [ $TRAVIS_PULL_REQUEST == "false" ]); then
-
-
+if ( [$TRAVIS_TEST_RESULT == 0] && [ $TRAVIS_BRANCH == $DEV_BRANCH ] && [ $TRAVIS_PULL_REQUEST == "false" ]); then
+      export BUILD_RESULT=1
       git config --global user.email "travis@luizalabs.com"
       git config --global user.name "Travis CI"
 
@@ -13,13 +12,11 @@ if ([ $TRAVIS_BRANCH == $DEV_BRANCH ] && [ $TRAVIS_PULL_REQUEST == "false" ]); t
       # Get updated build version
       BUILD_VERSION=$(node -pe 'JSON.parse(process.argv[1]).version' "$(cat $TRAVIS_BUILD_DIR/package.json)")
 
-      git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}"
-      git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}" --tags
-
       # Build
       grunt build
       tar -zcvf nodejs-getting-started-$BUILD_VERSION.tar.gz dist
-      
+
       export BUILD_VERSION
+      export BUILD_RESULT=0
 
 fi
