@@ -4,7 +4,7 @@
 if ([ $TRAVIS_BRANCH == $DEV_BRANCH ] && [ $TRAVIS_PULL_REQUEST == "false" ]); then
 
       # Release a prerelease version
-      npm version prerelease --git-tag-version -m "Pre Release %s [ci skip]"
+      npm version prerelease --git-tag-version -m "Pre Release %s [ci skip]" -f
 
       git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 
