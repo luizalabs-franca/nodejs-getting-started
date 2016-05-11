@@ -9,8 +9,7 @@ before_script:
 - npm install -g bower grunt-cli
 - bower install
 services: mongodb
-before_deploy: test $TRAVIS_TEST_RESULT = 0 && ./scripts/pre-release.sh && grunt build && cd dist && cd $TRAVIS_BUILD_DIR
-  && tar -zcvf nodejs-getting-started-$BUILD_VERSION.tar.gz dist
+before_deploy: ./scripts/pre-release.sh
 deploy:
   provider: releases
   skip_cleanup: true
