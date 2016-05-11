@@ -1,11 +1,25 @@
 language: node_js
 node_js:
-  - 4.2.3
+- 4.2.3
 matrix:
   fast_finish: true
   allow_failures:
-    - node_js: 5.1.1
+  - node_js: 5.1.1
 before_script:
-  - npm install -g bower grunt-cli
-  - bower install
+- npm install -g bower grunt-cli
+- bower install
 services: mongodb
+before_deploy: test $TRAVIS_TEST_RESULT = 0 && ./scripts/pre-release.sh && grunt build && cd dist && cd $TRAVIS_BUILD_DIR
+  && tar -zcvf nodejs-getting-started-$BUILD_VERSION.tar.gz dist
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file: nodejs-getting-started-$BUILD_VERSION.tar.gz
+  on:
+    branch: dev
+  api_key:
+    secure: FvyiRe+uH2Zkvto+yi9O0nvHBOxZ8qnevUIv3wYmYtqF9T5G+0kpLfPjh0APnohPKbK7ck/sb2qReMtg89o2/otM5m1AaDEa92VdSnAKMqVIPw6Rumit7adskFlY2l7GuHB03d4fu86N6XNqz2nchKyoLBfiEWSqwqgPGTU8HV38zGrCPhtvFAtjSD/TyvskDrZM1RlKsnTTtUPuDTYFg59PuLj4LUQh2cJpg+VMaofceSou7KPsQdBHgKdGSgyGKIv/XjS62GZLrTktc8Y2vEAxxgbqCS2j0XdPPgC9z4dO03OkStkDY7v+oFPUTeNTtlHzwtybECCgUEIlzYJ8wv3lOHgdLIIqde4uwOJPPnziJKf4oGN090A1EFfMJX+vKn24fkbnrCb4Gl9xt5aw0Mo1y/RJXcWAP2Le3IoKaJ1LX47tviL62qoqeon5gX1FilOFwAFlqn6DvqjYQA1FIG1e6pZgZt7KxETNKbQ1WpAdTTslnOnXA5vwGLH3wEdWENMQFH2WnWdD13wxvrIsG8aPKDwUw82xd901p8mHpH5Ls5gk3iv5clwF+0U92L/PLTlEmMlcyE8i7606uC9BiPLItqfJ6UR95EpnDNw8LmQfrpcrkugEVQha8qjn1aWokRRURBmQ178IOyXgtGFR/uFZtrbOk8dQTCSCOXzF/20=
+env:
+  global:
+    - DEV_BRANCH=dev
+    secure: g23movvDfnWKp5bbh7/JHF9WTg0WOgLpNJwK/mRhdHKn4g0aZTyr2/hhats999QtA8YWsTfuG+ihSmgtjuNkMmBTt1/EdYrFQLdVvZOc/ex7OgeImLFaDVLjQa02SZqS1H3Z4WbueiW2e+jL0RlocMNysjAX5Z8RJxhbw2cBRa6R12yBQePYtbDrd8uDnCxtA2TL3a/SXHRWBpmWePQT8oG5K+aDovTML954yZfmPCpoPdmfUzgWx4WhEwOE3bId/G404Fa9/faFXkmZQfHZP/Px9MGJxsrJ6Mu+Mgxh8IKs8zKMXG+KPxV//EEr5UxnlrnMZb/3gJn1pmOcRdExB9Xss9b0QRtQCYsnU02guo/uf7iT2yRxjqxxV//wi9dyhaggtQ3nWTwCFRJ47EURQn7IHL/Fxei7bblQFQqOUfdZ5SA+RglHQsbTp5Zz5mYZBHQrZl+UDqwNInV+ADIWhJf0gUnn44qCFrFH+Okj9iSEF8szsVCcblXEJFHShDMB/Gw7/1rM8BV0E4VE5rGzKM6WYnw/BVRVxdsdBAm+ahvcnIxVGhmQS7rUSwFRLs5STf0CE1FTskqo3N0KVhye4nhrQZtHZA0olJ/kq5NSdsGIKEpJwak1mlwOsvtmOyKdnQUbZ9KBUVGvG7ryPud09fhY2dVehfXSb+FDTP8P9qA=
