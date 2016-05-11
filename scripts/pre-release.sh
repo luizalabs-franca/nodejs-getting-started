@@ -16,4 +16,10 @@ if ([ $TRAVIS_BRANCH == $DEV_BRANCH ] && [ $TRAVIS_PULL_REQUEST == "false" ]); t
       git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}"
       git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}" --tags
 
+      # Build
+      grunt build
+      tar -zcvf nodejs-getting-started-$BUILD_VERSION.tar.gz dist
+      
+      export BUILD_VERSION
+
 fi
