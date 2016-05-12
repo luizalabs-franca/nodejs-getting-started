@@ -1,8 +1,9 @@
 #! /bin/bash
 
 
-if ( [$TRAVIS_TEST_RESULT == 0] && [ $TRAVIS_BRANCH == $DEV_BRANCH ] && [ $TRAVIS_PULL_REQUEST == "false" ]); then
-    
+if ( [[ $TRAVIS_TEST_RESULT = 0 ]] && [[ $TRAVIS_BRANCH = $DEV_BRANCH ]] && [[ $TRAVIS_PULL_REQUEST = "false" ]]);
+then
+
       git config --global user.email "travis@luizalabs.com"
       git config --global user.name "Travis CI"
 
