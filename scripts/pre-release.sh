@@ -18,7 +18,6 @@ then
         npm version patch --git-tag-version -m "Release %s [ci skip]" -f
       fi
 
-      if
       # Get updated build version
       BUILD_VERSION=$(node -pe 'JSON.parse(process.argv[1]).version' "$(cat $TRAVIS_BUILD_DIR/package.json)")
 
