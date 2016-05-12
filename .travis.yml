@@ -9,8 +9,8 @@ before_script:
 - npm install -g bower grunt-cli
 - bower install
 services: mongodb
-before_deploy: ./scripts/pre-release.sh
-after_deploy: ./scripts/push-version.sh
+before_deploy: source ./scripts/pre-release.sh
+after_deploy: source ./scripts/push-version.sh
 deploy:
   provider: releases
   skip_cleanup: true
