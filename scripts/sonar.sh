@@ -27,5 +27,3 @@ then
   installSonnarScanner
   sonar
 fi
-
-esac
