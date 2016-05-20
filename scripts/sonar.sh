@@ -24,8 +24,8 @@ function sonar {
 
 if ([[ $TRAVIS_PULL_REQUEST = "true" ]]);
 then
-  installSonnarScanner()
-  sonar()
+  installSonnarScanner
+  sonar
 fi
 
 esac
