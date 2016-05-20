@@ -23,6 +23,10 @@ then
 
       # Build
       grunt build
+
+      git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}"
+      git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}" --tags
+
       tar -zcvf nodejs-getting-started-$BUILD_VERSION.tar.gz dist
 
       export BUILD_VERSION
