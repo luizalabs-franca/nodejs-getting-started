@@ -10,6 +10,7 @@ function installSonnarScanner {
 
 function sonar {
   ~/sonar-scanner/sonar-scanner-2.6.1/bin/sonar-scanner \
+          -Dsonar.analysis.mode=issues \
           -Dsonar.github.pullRequest=$TRAVIS_PULL_REQUEST \
           -Dsonar.github.repository=$TRAVIS_REPO_SLUG \
           -Dsonar.github.oauth=$GITHUB_TOKEN \
