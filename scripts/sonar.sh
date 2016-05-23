@@ -9,7 +9,7 @@ function installSonnarScanner {
 
 
 function sonar {
-  echo "${SONAR_HOST_URL}"
+  echo "sonar URL $SONAR_HOST_URL"
   ~/sonar-scanner/sonar-scanner-2.6.1/bin/sonar-scanner \
           -Dsonar.analysis.mode=preview \
           -Dsonar.github.pullRequest=$TRAVIS_PULL_REQUEST \
