@@ -9,7 +9,7 @@ before_script:
 - npm install -g bower grunt-cli
 - bower install
 services: mongodb
-after_script: "./scripts/sonar.sh"
+after_script: source ./scripts/sonar.sh
 before_deploy: source ./scripts/pre-release.sh
 deploy:
   provider: releases
