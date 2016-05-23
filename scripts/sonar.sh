@@ -5,15 +5,13 @@ set -euo pipefail
 function installSonnarScanner {
   mkdir ~/sonar-scanner
   curl -sSL https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-2.6.1.zip > /tmp/sonar-scanner.zip
-  unzip /tmp/sonar-scanner.zip -d /tmp/sonar-scanner
-  mv -r /tmp/sonar-scanner/sonar-scanner-* ~/sonar-scanner/
+  unzip /tmp/sonar-scanner.zip -d ~/sonar-scanner/
   rm -drf /tmp/sonar-scanner.zip
-
 }
 
 
 function sonar {
-  ~/sonar-scanner/bin/sonar-scanner \
+  ~/sonar-scanner/sonar-scanner-2.6.1/bin/sonar-scanner \
           -Dsonar.github.pullRequest=$TRAVIS_PULL_REQUEST \
           -Dsonar.github.repository=$TRAVIS_REPO_SLUG \
           -Dsonar.github.oauth=$GITHUB_TOKEN \
