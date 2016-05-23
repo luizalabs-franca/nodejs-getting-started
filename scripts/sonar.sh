@@ -18,7 +18,8 @@ function sonar {
           -Dsonar.login=$SONAR_TOKEN \
           -Dsonar.projectKey=$TRAVIS_REPO_SLUG \
           -Dsonar.projectName=$(node -pe 'JSON.parse(process.argv[1]).name' "$(cat $TRAVIS_BUILD_DIR/package.json)") \
-          -Dsonar.projectVersion=$(node -pe 'JSON.parse(process.argv[1]).version' "$(cat $TRAVIS_BUILD_DIR/package.json)")
+          -Dsonar.projectVersion=$(node -pe 'JSON.parse(process.argv[1]).version' "$(cat $TRAVIS_BUILD_DIR/package.json)") \
+          -e -X
 }
 
 
