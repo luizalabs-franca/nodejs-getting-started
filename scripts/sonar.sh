@@ -9,12 +9,13 @@ function installSonnarScanner {
 
 
 function sonar {
+  echo "${SONAR_HOST_URL}"
   ~/sonar-scanner/sonar-scanner-2.6.1/bin/sonar-scanner \
           -Dsonar.analysis.mode=preview \
           -Dsonar.github.pullRequest=$TRAVIS_PULL_REQUEST \
           -Dsonar.github.repository=$TRAVIS_REPO_SLUG \
           -Dsonar.github.oauth="${GITHUB_TOKEN}" \
-          -Dsonar.host.url=$SONAR_HOST_URL \
+          -Dsonar.host.url="${SONAR_HOST_URL}" \
           -Dsonar.login="${SONAR_TOKEN}" \
           -Dsonar.projectKey=$TRAVIS_REPO_SLUG \
           -Dsonar.projectName=$(node -pe 'JSON.parse(process.argv[1]).name' "$(cat $TRAVIS_BUILD_DIR/package.json)") \
