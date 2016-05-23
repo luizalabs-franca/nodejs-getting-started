@@ -6,7 +6,7 @@ function installSonnarScanner {
   mkdir ~/sonar-scanner
   curl -sSL https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-2.6.1.zip > /tmp/sonar-scanner.zip
   unzip /tmp/sonar-scanner.zip -d ~/sonar-scanner/
-  rm -drf /tmp/sonar-scanner.zip
+  rm -f /tmp/sonar-scanner.zip
 }
 
 
