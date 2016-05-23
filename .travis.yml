@@ -25,4 +25,3 @@ env:
   global:
   - PRE_RELEASE_BRANCH=dev
   - RELEASE_BRANCH=master
-  - SONAR_HOST_URL=https://sonar.appsluiza.com.br/
