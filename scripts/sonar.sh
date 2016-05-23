@@ -22,7 +22,6 @@ function sonar {
           -e -X
 }
 
-
 if ([[ $TRAVIS_PULL_REQUEST != "false" ]]);
 then
   installSonnarScanner
